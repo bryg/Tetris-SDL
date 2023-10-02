@@ -6,6 +6,8 @@ public:
 
 	void init(SDL_Renderer* _renderer, int _width, int _height);
 	void render();
+	int getCenterX();
+	int getBlockSize();
 
 private:
 	SDL_Renderer* renderer;

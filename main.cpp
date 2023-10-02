@@ -8,14 +8,23 @@ int main(int argc, char* argv[]) {
 	const int WIDTH = 640;
 	const int HEIGHT = 480;
 
+	unsigned int currentTick = SDL_GetTicks();
+	unsigned int lastTick = SDL_GetTicks();
+	
 	game = new Game();
 
 	game->init("Tetris-SDL", WIDTH, HEIGHT, false);
 
 	while (game->running()) {
 		game->handleEvents();
-		game->update();
-		game->render();
+
+		currentTick = SDL_GetTicks();
+		if (currentTick - lastTick > 1000 / 60.0) {
+			lastTick = currentTick;
+			game->update();
+			game->render();
+		}
+
 	}
 
 	game->clean();

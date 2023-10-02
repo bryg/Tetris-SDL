@@ -1,6 +1,7 @@
 #include <SDL3/SDL.h>
 #include "Tetrion.h"
 #include <iostream>
+
 Tetrion::Tetrion() {}
 Tetrion::~Tetrion() {}
 
@@ -35,7 +36,7 @@ void Tetrion::render() {
 		SDL_RenderFillRect(renderer, &rect);
 	}
 
-	SDL_SetRenderDrawColor(renderer, 128, 128, 128, 255);
+	SDL_SetRenderDrawColor(renderer, 105, 105, 105, 255);
 	// Render tetrion's (well) vertical lines
 	int ySize = 21 * blockSize;
 	for (int i = 0; i <= 12; i++) {
@@ -50,4 +51,12 @@ void Tetrion::render() {
 		SDL_RenderLine(renderer, 0, yPos, xSize, yPos);
 	}
 	
+}
+
+int Tetrion::getCenterX() {
+	return blockSize * 5;
+}
+
+int Tetrion::getBlockSize() {
+	return blockSize;
 }

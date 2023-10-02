@@ -19,6 +19,9 @@ void Game::init(const char *title, int _width, int _height, bool fullscreen) {
 		tetrion = new Tetrion();
 		tetrion->init(renderer, _width, _height);
 
+		tetromino = new Tetromino(tetrion->getCenterX(), tetrion->getBlockSize());
+		tetromino->init(renderer);
+
 		isRunning = true;
 	}
 	else {
@@ -41,14 +44,16 @@ void Game::handleEvents() {
 	}
 }
 
-void Game::update() {}
+void Game::update() {
+	tetromino->update();
+}
 
 void Game::render() {
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	SDL_RenderClear(renderer);
 	// Render here
 	tetrion->render();
-
+	tetromino->render();
 	SDL_RenderPresent(renderer);
 }
 

@@ -2,6 +2,7 @@
 
 #include "SDL3/SDL.h"
 #include "Tetrion.h"
+#include "Tetromino.h"
 
 class Game {
 public:
@@ -21,5 +22,6 @@ private:
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 	Tetrion* tetrion;
+	Tetromino* tetromino;
 };
 
