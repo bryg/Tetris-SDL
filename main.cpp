@@ -1,7 +1,7 @@
 #include "SDL3/SDL.h"
 #include "SDL3/SDL_main.h"
 #include "Game.h"
-
+#include "Tetrion.h"
 Game* game = nullptr;
 
 int main(int argc, char* argv[]) {
@@ -11,8 +11,6 @@ int main(int argc, char* argv[]) {
 	game = new Game();
 
 	game->init("Tetris-SDL", WIDTH, HEIGHT, false);
-
-	SDL_Delay(3000);
 
 	while (game->running()) {
 		game->handleEvents();
