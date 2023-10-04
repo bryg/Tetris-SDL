@@ -33,8 +33,24 @@ void Game::init(const char *title, int _width, int _height, bool fullscreen) {
 
 void Game::handleEvents() {
 	SDL_Event event;
-	SDL_PollEvent(&event);
 
+	while (SDL_PollEvent(&event)) {
+		switch (event.type) {
+			case SDL_EVENT_QUIT:
+				isRunning = false;
+				break;
+			case SDL_EVENT_KEY_DOWN:
+				if (event.key.keysym.sym == SDLK_a)
+					tetromino->setVelocity(-1); // Move left
+				break;
+			case SDL_EVENT_KEY_UP:
+				if (event.key.keysym.sym == SDLK_a)
+					tetromino->setVelocity(1);
+				break;
+			default:
+				break;
+		}
+	}
 	switch (event.type) {
 		case SDL_EVENT_QUIT:
 			isRunning = false;

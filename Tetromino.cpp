@@ -10,6 +10,9 @@ Tetromino::Tetromino(int xPos, int _blockSize) {
 
 Tetromino::~Tetromino() {}
 
+void Tetromino::setVelocity(int amount) {
+	xVelocity += amount;
+}
 void Tetromino::init(SDL_Renderer* _renderer) {
 	renderer = _renderer;
 	for (int i = 0; i < 4; i++) {
@@ -30,6 +33,8 @@ void Tetromino::init(SDL_Renderer* _renderer) {
 	rects[3].x = x + blockSize * 2;
 	rects[3].y = y;
 
+	xVelocity = 0;
+	
 	lastTick = SDL_GetTicks();
 }
 
@@ -38,6 +43,7 @@ void Tetromino::update() {
 		lastTick = SDL_GetTicks();
 		for (int i = 0; i < 4; i++) {
 			rects[i].y += blockSize;
+			rects[i].x += xVelocity * blockSize;
 		}
 
 	}
